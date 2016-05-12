@@ -63,7 +63,7 @@ public class Registration extends HttpServlet {
 
             if(i>0)
             {
-                logger.trace("You are sucessfully registered");
+                logger.trace("You are successfully registered");
             }
 
         }

@@ -120,12 +120,12 @@
                             <div class="form-group">
                                 <label class="sr-only">lastname :</label>
                                 <input type="text" name="lname" placeholder="last name..."
-                                       class="form-lastname form-control" id="l_name">
+                                       class="bootbox-input bootbox-input-text form-control" id="l_name">
                             </div>
                             <!--<script> $('#defaultPopup,#defaultInline').datepick();</script>-->
 
                             <div class="form-group">
-                                <input type="text" name="email" class="form-control" placeholder="example@domain.com" id="e_mail"
+                                <input type="email" name="email" class="bootbox-input bootbox-input-email form-control" placeholder="example@domain.com" id="e_mail"
                                        required>
                             </div>
 
@@ -189,7 +189,7 @@
                                        style="position:absolute;top:0px;left:0px;width:183px;width:180px\9;#width:180px;height:23px; height:21px\9;#height:18px;border:1px solid #556;"
                                        onfocus="this.select()" type="text" required>
                                 <input name="idValue" id="idValue" type="hidden">
-                                <select style="position:absolute;top:0px;left:0px;width:200px; height:25px;line-height:20px;margin:0;padding:0;"
+                                <select class="'bootbox-input bootbox-input-select form-control'" style="position:absolute;top:0px;left:0px;width:200px; height:25px;line-height:20px;margin:0;padding:0;"
                                         onchange="document.getElementById('group').value=this.options[this.selectedIndex].text; document.getElementById('idValue').value=this.options[this.selectedIndex].value;">
                                     <option></option>
                                     <option value="ad">Admin</option>
@@ -241,6 +241,8 @@
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/jquery.backstretch.min.js"></script>
 <script src="assets/js/scripts.js"></script>
+<script src="bootbox.js"></script>
+
 
 <a href=" http://translate.yandex.com/">Powered by Yandex.Translate</a>
 </body>

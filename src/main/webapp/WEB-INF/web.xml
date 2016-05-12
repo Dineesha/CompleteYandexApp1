@@ -1,0 +1,77 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <context-param>
+    <param-name>MONGO_HOST</param-name>
+    <param-value>localhost</param-value>
+  </context-param>
+  <context-param>
+    <param-name>MONGO_PORT</param-name>
+    <param-value>27017</param-value>
+  </context-param>
+  <context-param>
+    <param-name>MONGO_DBNAME</param-name>
+    <param-value>db_user</param-value>
+  </context-param>
+  <context-param>
+    <param-name>MONGO_COLLECTION</param-name>
+    <param-value>user_details</param-value>
+  </context-param>
+  <listener>
+    <listener-class>loginmongo.MongoDBConListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>login</servlet-name>
+    <servlet-class>loginmongo.Login</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>translate</servlet-name>
+    <servlet-class>loginmongo.LanguageTranslation</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>searchServlet</servlet-name>
+    <servlet-class>loginmongo.SearchServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>registration</servlet-name>
+    <servlet-class>loginmongo.Registration</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>deleteServlet</servlet-name>
+    <servlet-class>loginmongo.DeleteServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>userEditServlet</servlet-name>
+    <servlet-class>loginmongo.UserEditServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>searchServlet</servlet-name>
+    <url-pattern>/SearchServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>translate</servlet-name>
+    <url-pattern>/LanguageTranslation</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>registration</servlet-name>
+    <url-pattern>/Registration</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>deleteServlet</servlet-name>
+    <url-pattern>/DeleteServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>userEditServlet</servlet-name>
+    <url-pattern>/UserEditServlet</url-pattern>
+  </servlet-mapping>
+  
+
+</web-app>

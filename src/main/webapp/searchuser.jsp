@@ -1,3 +1,6 @@
+<%@ taglib prefix="fmt"
+           uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@ page import="com.mongodb.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
@@ -84,11 +87,21 @@
                             <h3>Search for Users</h3>
 
                             <p style="color:#ff0913">
-                                <%
+                                <%--<%
                                     if (null != request.getAttribute("errorMessage")) {
                                         out.println(request.getAttribute("errorMessage"));
                                     }
-                                %></p>
+                                %>--%>
+                                    <c:if test="${pageContext.request.method=='POST'}">
+                                        <c:set var="errorMessage" scope="session" value="request.getAttribute(errorMessage)"/>
+
+                                        <c:choose>
+                                            <c:when test="${errorMessage!=null}">No results found!
+                                                <br />
+                                            </c:when>
+                                        </c:choose>
+                                    </c:if>
+                            </p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-lock"></i>

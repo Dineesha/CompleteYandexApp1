@@ -1,3 +1,5 @@
+<%@ taglib prefix="fmt"
+           uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
         <link rel="stylesheet" type="text/css" href="successDesign.css">
@@ -30,7 +32,8 @@
 
 <body>
 
- 
+<meta http-equiv="Content-Type" content=”text/html; charset=ISO-8859-1″>
+
   <div class="top-content">
         	
             <div class="inner-bg">
@@ -62,17 +65,24 @@
                             <div class="form-bottom">
 			                    <form role="form" action="Login" method="post" class="login-form">
 			                    	<div class="form-group">
-			                    		<label class="sr-only" for="form-username">Username</label>
+			                    		<label class="sr-only" id="username" for="form-username">Username</label>
 			                        	<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="form-password">Password</label>
 			                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
 			                        </div>
-			                        <button type="submit" class="btn">Log In</button>
+			                        <fmt:bundle basename="jstl_fmt">
+                                    <button type="submit" class="btn" id="login_btn">
+                                        <fmt:message key="index.login_btn"> </fmt:message>
+                                    </button>
                                     <div style="margin: 8px">
-                                    <button type="submit" class="btn" onclick="window.location='signup.jsp'" >Sign Up</button>
-                                    </div>
+                                        <button id="signup_loginpage_btn" type="submit" class="btn" onclick="window.location='signup.jsp'" >
+                                            <fmt:message key="index.signup_loginpage_btn"> </fmt:message>
+                                        </button>
+                                    </div
+                                    </fmt:bundle>
+                                    >
 			                    </form>
 		                    </div>
                         </div>

@@ -1,3 +1,5 @@
+<%@ taglib prefix="fmt"
+           uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <tr xmlns="http://www.w3.org/1999/html" xmlns:name="http://www.w3.org/1999/xhtml">
     <head>
@@ -250,7 +252,9 @@
 
    <div  style="display:block;padding:10px">
     <!--<input type="submit" name=submittext value="Translate"/>-->
-     <button type="submit" class="btn">Translate</button>
+       <fmt:bundle basename="jstl_fmt">
+
+       <button type="submit" class="btn" id="translate_btn"> <fmt:message key="success.translate_btn"> </fmt:message></button>
 
 
 
@@ -265,8 +269,8 @@ document.getElementById("txtarea2").value = tmp;
 </script>
 
 <input type="button" class="btn btn-primary" id="go" onclick="swapValues()" value="Swap">
-   <button type="button" class="btn btn-info" value="Reset">Reset</button>
-
+   <button type="button" class="btn btn-info" value="Reset" id="reset_btn"><fmt:message key="success.reset_btn"> </fmt:message></button>
+       </fmt:bundle>
 </form>
  <div style="padding:30px" > <a href=" http://translate.yandex.com/">Powered by Yandex.Translate</a></div>
 

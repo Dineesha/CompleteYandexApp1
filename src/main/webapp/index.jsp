@@ -1,5 +1,6 @@
 <%@ taglib prefix="fmt"
            uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <html>
 <head>
         <link rel="stylesheet" type="text/css" href="successDesign.css">
@@ -50,12 +51,20 @@
                         		<div class="form-top-left">
                         			<h3>Login</h3>
                             		<p style="color:#ee29ff">
-                            		<%
+                                        <c:if test="${pageContext.request.method=='POST'}">
+                                            <c:set var="errorMessage" scope="session" value="request.getAttribute(errorMessage)"/>
+                            		<%--<%
                                            if(null!=request.getAttribute("errorMessage"))
                                            {
                                                out.println(request.getAttribute("errorMessage"));
                                            }
-                                       %>
+                                       %>--%>
+                                            <c:choose>
+                                            <c:when test="${errorMessage!=null}">Incorrect username or password
+                                                <br />
+                                            </c:when>
+                                            </c:choose>
+                                        </c:if>
                                   </p>
                         		</div>
                         		<div class="form-top-right">

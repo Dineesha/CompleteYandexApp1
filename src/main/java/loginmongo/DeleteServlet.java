@@ -4,6 +4,7 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,34 +12,60 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * Created by hsenid on 4/29/16.
  */
 public class DeleteServlet extends HttpServlet {
-    public void doPost(HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
+    final static Logger logger = Logger.getLogger(DeleteServlet.class);
 
-        String userCheck[] = request.getParameterValues("userCheck");
-        // MongoClient mongo = new MongoClient("localhost", 27017);
-        //DB db = mongo.getDB("login_form");
-        // DBCollection table = db.getCollection("test_user1");
-        // table.remove(dock);
-       /* RequestDispatcher rd = request.getRequestDispatcher("/searchuser.jsp");
-        rd.include(request, response);*/
-        if (userCheck != null) {
- /*   UserUpdate up=new UserUpdate();
-    up.deleteSelectedUser(dock);*/
-            RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-            rd.include(request, response);
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
+        ServletException, IOException {
 
-        } else {
-   /* UserUpdate up=new UserUpdate();
-    up.updateSelectedUser(dock);*/
-            RequestDispatcher rd = request.getRequestDispatcher("/success.jsp");
-            rd.include(request, response);
+
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+
+            String username = request.getParameter("val");
+
+            String sql = "delete from user where username=\'" + username + "\';";
+
+            Connection con = null;
+            PreparedStatement st = null;
+
+            try {
+                con = Database.cpds.getConnection();
+                st = con.prepareStatement(sql);
+                int rs = st.executeUpdate();
+
+                if (rs == 1) {
+                    out.println(rs);
+                }
+
+            } catch (Exception ex) {
+                logger.error("Error occured user deletion..", ex);
+            } finally {
+                try {
+                    logger.trace("connection closed");
+                    con.close();
+                } catch (SQLException e) {
+                    logger.fatal("Error while closing connection..");
+                    e.printStackTrace();
+                }
+                try {
+                    logger.trace(" Prepared statement closed");
+                    st.close();
+                } catch (SQLException e) {
+                    logger.fatal("Error while closing prepared statement ", e);
+                }
+            }
         }
 
     }
 
-}
+

@@ -26,7 +26,7 @@ public class Registration extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html;charset=UTF-8");
-       // PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter();
 
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
@@ -38,28 +38,30 @@ public class Registration extends HttpServlet {
         String username = request.getParameter("uname");
         String password = request.getParameter("password");
 
-        try{
+        try {
             //loading drivers for mysql
             Class.forName("com.mysql.jdbc.Driver");
 
             //creating connection with the database
-            Connection  con=DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/login_info","username","password");
+            Connection con = DriverManager.getConnection
+                    ("jdbc:mysql://localhost:3306/login_info", "username", "password");
 
-            PreparedStatement ps=con.prepareStatement
+            PreparedStatement ps = con.prepareStatement
                     ("INSERT INTO user (fname, lname, email, dob, email, country,phone,username,password,group_id)\n" +
                             "VALUES (?,?,?,?,?,?,?,?,?); ");
 
             ps.setString(1, fname);
             ps.setString(2, lname);
-            ps.setString(3, email);
-             ps.setString(4, dob);
-            ps.setString(5, phone);
-            ps.setString(6, country);
-            ps.setString(7,group);
-            ps.setString(8, username);
-            ps.setString(9, password);
-            int i=ps.executeUpdate();
+            ps.setString(3, dob);
+            ps.setString(4, email);
+            ps.setString(5, country);
+            ps.setString(6, phone);
+            ps.setString(7, username);
+            ps.setString(8, password);
+            ps.setString(9, group);
+            ps.execute();
+            out.close();
+           /* int i=ps.executeUpdate();
 
             if(i>0)
             {
@@ -74,7 +76,7 @@ public class Registration extends HttpServlet {
         }
         response.sendRedirect("signup.jsp?name=" + username);
 
-    }
+    }*/
 /*
 
         MongoClient mongo = new MongoClient("localhost", 27017);
@@ -110,8 +112,14 @@ public class Registration extends HttpServlet {
 
 */
 
-       // coll.insert(doc);
+            // coll.insert(doc);
 
 
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+}
 
